@@ -1,0 +1,270 @@
+
+<div class="row row_info">
+    <div class="col-md-6">
+        <div class="personal">
+            <div class="personal_head">
+                个人信息
+            </div>
+            <div class="personal_info">
+                <p class="personal_accounts">管理帐号:&nbsp;Dongnikeji</p>
+                <p class="personal_accounts">主体级别:&nbsp;会员</p>
+                <p class="personal_accounts">当前状态:&nbsp;在线</p>
+                <p class="personal_accounts">机器人状态:&nbsp;工作正常</p>
+            </div>
+        </div><!--personal-->
+        <div class="dialogue">
+            <div class="dialogue_head">
+                对话统计
+            </div>
+            <div class="dialogue_info">
+                <div class="col-md-4">
+                    <dl>
+                        <dd class="dialogue_title">对话总数</dd>
+                        <dt class="dialogue_tol"> {{message.message_count}}</dt>
+                    </dl>
+                </div>
+                <div class="col-md-4">
+                    <dl>
+                        <dd class="dialogue_title">用户数</dd>
+                        <dt class="dialogue_tol">{{message.user_count}}</dt>
+                    </dl>
+                </div>
+                <div class="col-md-4">
+                    <dl>
+                        <dd class="dialogue_title">平均消息数</dd>
+                        <dt class="dialogue_tol">{{message.average_message}}</dt>
+                    </dl>
+                </div>
+                <div class="col-md-12 dialogue_line"></div>
+                <div class="col-md-4">
+                     <dl>
+                        <dd class="dialogue_title">机器人消息数</dd>
+                        <dt class="dialogue_tol">{{message.bot_message_count}}</dt>
+                    </dl>
+                </div>
+                <div class="col-md-4">
+                     <dl>
+                        <dd class="dialogue_title">用户消息</dd>
+                        <dt class="dialogue_tol">{{message.user_message_count}}</dt>
+                    </dl>
+                </div>
+            </div>
+        </div><!--dialogue-->
+        <div class="faq">
+            <div class="faq_head">词频统计(TOP5)</div>
+            <div class="echarts" id="highcharts">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="user">
+            <div class="user_head">新手帮助</div>
+            <div class="user_info"><a download="产品使用手册.zip" href="img/产品使用手册.zip" target="_blank">产品使用文档v0.1.0</a></div>
+        </div>
+        <div class="help">
+            <div class="help_head">
+                新手帮助
+            </div>
+            <div class="help_info">
+                <div class="panel-group" id="accordion">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <p class="panel-title help_title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="info/#collapseOne" class="help_que">
+                                    1、为什么我无法注册账号？
+                                </a>
+                            </p>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in">
+                            <div class="panel-body help_ans">
+                              我们的产品还在内测阶段，暂不对外开放注册，如果有需要，请联系hello@iknow.ai.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-heading help_title">
+                            <p class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="info/#collapseTwo" class="help_que">
+                                    2、所有场景都必须设定唤醒词么？
+                                </a>
+                            </p>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="panel-body help_ans">
+                                是的，唤醒词是用来区分用户输入内容进入哪个场景的重要工具.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-heading help_title">
+                            <p class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="info/#collapseThree" class="help_que">
+                                    3、聊天记录是实时更新的么？
+                                </a>
+                            </p>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="panel-body help_ans">
+                               是的，有新消息会显示在页面右上角的通知按钮
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-heading help_title">
+                            <p class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="info/#collapseFour" class="help_que">
+                                    4、聊天记录有保存么？
+                                </a>
+                            </p>
+                        </div>
+                        <div id="collapseFour" class="panel-collapse collapse">
+                            <div class="panel-body help_ans">
+                               只要接入我们的系统，聊天记录就会保存在我们的数据库中。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-heading help_title">
+                            <p class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="info/#collapseFive" class="help_que">
+                                    5、聊天记录保存多久？
+                                </a>
+                            </p>
+                        </div>
+                        <div id="collapseFive" class="panel-collapse collapse">
+                            <div class="panel-body help_ans">
+                                30天
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-heading help_title">
+                            <p class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="info/#collapseSix" class="help_que">
+                                    6、统计数目是实时显示的么？
+                                </a>
+                            </p>
+                        </div>
+                        <div id="collapseSix" class="panel-collapse collapse">
+                            <div class="panel-body help_ans">
+                                是的，如果有延迟，请检查网络或者刷新页面。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-heading help_title">
+                            <p class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="info/#collapseSeven" class="help_que">
+                                    7、模块顺序可以更改么？
+                                </a>
+                            </p>
+                        </div>
+                        <div id="collapseSeven" class="panel-collapse collapse">
+                            <div class="panel-body help_ans">
+                                不行，暂时只能删除和添加模块，无法修改模块顺序。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-heading help_title">
+                            <p class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="info/#collapseEight" class="help_que">
+                                    8、字体和符号有限制么？
+                                </a>
+                            </p>
+                        </div>
+
+                        <div id="collapseEight" class="panel-collapse collapse">
+                            <div class="panel-body help_ans">
+                                除开文本符号，所有的间隔符（例如;）等都必须是半角符号。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-heading help_title">
+                            <p class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="info/#collapsNine" class="help_que">
+                                    9、可以设置多个唤醒词么？
+                                </a>
+                            </p>
+                        </div>
+
+                        <div id="collapsNine" class="panel-collapse collapse">
+                            <div class="panel-body help_ans">
+                               可以，多个唤醒词之间请用;（半角分号）间隔。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-heading help_title">
+                            <p class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="info/#collapseTen" class="help_que">
+                                    10、匹配模块可以同时匹配库和自定义内容么？
+                                </a>
+                            </p>
+                        </div>
+                        <div id="collapseTen" class="panel-collapse collapse">
+                            <div class="panel-body help_ans">
+                                不行，暂时同一个模块只能使用一种匹配方式。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-heading help_title">
+                            <p class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="info/#collapse11th" class="help_que">
+                                    11、库可以自己上传么？
+                                </a>
+                            </p>
+                        </div>
+                        <div id="collapse11th" class="panel-collapse collapse">
+                            <div class="panel-body help_ans">
+                               暂不支持自己上传库
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-heading help_title">
+                            <p class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="info/#collapse12yh" class="help_que">
+                                    12、模块名称可以重复么？
+                                </a>
+                            </p>
+                        </div>
+                        <div id="collapse12yh" class="panel-collapse collapse">
+                            <div class="panel-body help_ans">
+                               不行，模块名字重复会导致抽取属性冲突
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-heading help_title">
+                            <p class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="info/#collapse13th" class="help_que">
+                                    13、有必须的模块么？
+                                </a>
+                            </p>
+                        </div>
+                        <div id="collapse13th" class="panel-collapse collapse">
+                            <div class="panel-body help_ans">
+                                每一个场景都必须有一个总结模块。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--help_info-->
+            <div class="help_loading">
+                <!--<div class="panel">
+                    <div class="panel-heading">
+                        loading
+                    </div>
+                    <div class="panel-body">
+
+                    </div>
+                </div> -->
+                <rd-loading></rd-loading>
+            </div>
+        </div><!--head-->
+    </div>
+</div>
+

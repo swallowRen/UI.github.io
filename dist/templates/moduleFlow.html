@@ -1,0 +1,232 @@
+<div class="row">
+    <div class="panel panel-default col-md-12 panel_modules">
+        <div class="panel_top col-md-12">
+            <p class="panel_des">
+                场景名称:
+            </p>
+            <p class="panel_title"><a editable-text="process.name" ng-model="process.name">{{process.name}}</a></p>
+            <p class="panel_des">
+                唤醒词:
+            </p>
+            <p class="panel_recall">
+                <a editable-text="process.keywords" ng-model="process.keywords">{{process.keywords}}</a>
+                <!-- <input class="mate_in form-control" ng-model='process.keywords'> -->
+            </p>
+            <button type="button" class="btn btn-default btn-sm btn-quxiao" ng-click="goBack()">取消</button>
+            <button type="button" class="btn btn-primary btn-sm btn-save" ng-click="saveAndBack()">保存</button>
+        </div>
+        <div class="col-md-12 panel_bottom">
+            <div class="body_left col-md-9">
+                <div class="module_tol">
+                    <div class="panel_list" ng-show="list_panel" ng-repeat="ls in process.content track by $index">
+                        <div ng-repeat="dict in ls track by $index">
+                            <div class="module_top">
+                                <span class="glyphicon glyphicon-remove remove_module" ng-click="delModule(dict.name)"></span>
+                                <p class="panel_list_li">{{dict.type}}</p>
+                            </div>
+                            <div class="module_bottom" ng-click="showModule(dict)">
+                                {{dict.name}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default panel_add" ng-click="addModule()">
+                    <div class="panel-body">
+                        <i class="fa fa-plus" aria-hidden="true"></i>添加新的模块
+                    </div>
+                </div>
+            </div>
+
+            <div class="body_right col-md-3 pull-right">
+                <div class="module_content" ng-hide="content_modules">
+                    <div class="module_content_top">
+                        <p class="module_ct_title"><input type="text" class="input_name col-md-7" ng-model="obj.name" ng-required placeholder="流程名称"></p>
+                    </div>
+                    <div class="panel-body">
+                        <p class="module_que">设置问题</p>
+                        <textarea class="que_des form-control" rows="5" ng-model="obj.welcomeMsg"></textarea>
+                        <p class="module_que1">
+                            内容匹配
+                        </p>
+                        <p class="mate_p">
+                            匹配回复内容
+                            <span class="mate_note">(多个匹配之间用英文;分割)</span>
+                            <button class="btn btn-sm btn-default mate_a" data-toggle="modal" data-target="#matchData">匹配到库</button>
+                        </p>
+                        <input class="mate_in form-control" ng-model="obj.textMsg" ng-change="matchModuleChange()">
+                        <br><br>
+                        <p class="mate_des">
+                            定义为参数
+                            <span class="mate_li" ng-repeat="item in obj.matchItem.matchData track by $index">{{item.name}}</span>
+                        </p>
+                        <hr>
+                        <p class="module_que">失败回复</p>
+                        <textarea class="que_fail form-control" rows="5" ng-model="obj.failMsg"></textarea>
+                        <p class="module_que1"> </p>
+                        <button type="button" class="btn btn-default btn-quxiao" ng-click="cancelNewModule()">取消</button>
+                        <button type="button" class="btn btn-primary btn-save" ng-click="addNewModule()">保存</button>
+                       <!--  <button type="button" class="btn btn-primary btn-edit " ng-click="editNewModule(stepContent)" ng-show="editModuel">修改</button> -->
+                    </div>
+                </div>
+                <!--module_content-->
+                <!-- NER-module -->
+                <div class="module_content" ng-hide="ner_module">
+                    <div class="module_content_top">
+                        <p class="module_ct_title"><input type="text" class="input_name col-md-7" ng-model="obj.name" ng-required placeholder="流程名称"></p>
+                    </div>
+                    <div class="panel-body">
+                        <p class="module_que">设置回复</p>
+                        <textarea class="que_des form-control" rows="5" ng-model="obj.welcomeMsg"></textarea>
+                        <p class="module_que1">
+                            识别内容
+                            </p><h6>
+                                选定识别内容
+                                <select class="input-sm" name="" id="">
+                                    <option>{{matchName}}</option>
+                                </select>
+                                定义为参数
+                            </h6>
+                        <p></p>
+                        <p class="mate_des">
+                            <span class="mate_li">{{obj.name}}loc</span>
+                        </p>
+                        <hr>
+                        <p class="module_que">失败回复</p>
+                        <textarea class="que_fail form-control" rows="5" ng-model="obj.failMsg"></textarea>
+                        <p class="module_que1"> </p>
+                        <button type="button" class="btn btn-default btn-quxiao" ng-click="cancelNewModule()">取消</button>
+                        <button type="button" class="btn btn-primary btn-save" ng-click="addNERModule()">保存</button>
+                        <!-- <button type="button" class="btn btn-primary btn-edit " ng-click="editNewModule(stepContent)" ng-show="editModuel">修改</button> -->
+                    </div>
+                </div>
+                <!-- NER module end -->
+                <!-- calculate_module/conclusion_module-->
+                <div class="module_content" ng-hide="calculate_module">
+                    <div class="module_content_top">
+                        <p class="module_ct_title"><input type="text" class="input_name col-md-7" ng-model="obj.name" ng-required placeholder="流程名称"></p>
+                    </div>
+                    <div class="panel-body">
+                        <p class="module_que">设置回复</p>
+                        <textarea class="que_des form-control" rows="7" ng-model="obj.textMsg"></textarea>
+                        <div class="pull-right">
+<!--                            <div class="item dropdown " uib-dropdown>
+                                <a href="#" class="dropdown-toggle" uib-dropdown-toggle>
+                                    <img src="../img/fx.png">
+                                </a>
+                                <ul class="insert dropdown-menu dropdown-menu-right" >
+                                    <li class="dropdown-header">
+                                        插入公式
+                                    </li>
+                                    <li ng-click="$event.stopPropagation()">
+                                        <textarea class="form-control" rows="3" ng-model="insertContent"></textarea>
+                                    </li>
+                                    <li ng-click="$event.stopPropagation()">
+                                        <ul class="list-inline link calculator">
+                                            <li class="fix" ng-repeat="item in operators"><button class="btn btn-xs operator" ng-click="insertOperator(item)">{{item}}</button></li>
+                                        </ul>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li class="link">
+                                        <h6>点击参数将其加入到公式中</h6>
+                                    </li>
+                                    <li class="contentAdded" ng-click="$event.stopPropagation()" ng-repeat="item in list">
+                                        <p>{{$index+1}}. {{item[0].name}}</p>
+                                        <span class="mate_li">1.抽取咖啡.名称</span>
+                                        <span class="mate_li">1.抽取咖啡.价格</span>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li class="confirmInsert">
+                                        <button class="btn btn-sm btn-primary btn-save" ng-click="insertCalculator()">插入</button>
+                                    </li>
+                                </ul>
+                            </div> -->
+                            <div class="item dropdown" uib-dropdown>
+                                <a href="#" class="dropdown-toggle" uib-dropdown-toggle>
+                                    插入参数<img src="../img/Page.png">
+                                </a>
+                                <ul class="insert dropdown-menu dropdown-menu-right">
+                                    <li class="dropdown-header">
+                                        插入参数
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li class="link">
+                                        <h6>点击参数将其加入到公式中</h6>
+                                    </li>
+                                    <li class="contentAdded" ng-repeat="item in process.matchDatas track by $index">
+                                        <p>{{item.stepName}}</p>
+                                        <p><span ng-repeat="each in item.matchData track by $index" class="mate_li" ng-click="addTextModule(each)">{{each.name}}</span></p>
+                                    </li><li class="divider"></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <br>
+                        <hr>
+                        <div class="instructions">
+                            <h6>* 文本内容将直接返回给用户，请确保文本内容不会出现{ }(大括号)，否则可能出现返回错误。</h6>
+                            <h6>* 公式可直接将运算结果返回给用户，请确保公式中只包含运算符号、数字和参数（参数对象必须为数字），否则可能出现运算错误。</h6>
+                            <h6>* 参数内容可自由选择返回匹配模块匹配的参数或匹配库中该参数包含的其他属性。</h6>
+                        </div>
+                        <button type="button" class="btn btn-default btn-quxiao" ng-click="cancelNewModule()">取消</button>
+                        <button type="button" class="btn btn-primary btn-save" ng-click="addConclusionModule()">保存</button>
+                    </div>
+                </div>
+                <!-- calculate_module end -->
+                <div class="module_add" ng-hide="add_modules">
+                    <div class="module_add_heading">
+                        <p class="module_add_title">添加模块</p>
+                        <span class="glyphicon glyphicon-remove remove_addmodule" ng-click="closeAdd()"></span>
+                    </div>
+                    <div class="panel_body_modules">
+                         <div class="modules_list" ng-repeat="li in modulesTable track by $index">
+                            <div class="panel_heading_li">
+                                <p class="add_modules_title">{{li.title}}</p>
+                                <p class="add_modules-btn" ng-click="toConM(li.title)">添加</p>
+                            </div>
+                            <br>
+                            <div class="modules_list_body">
+                               <span> {{li.des}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--module_add-->
+                <!-- modal match data-->
+                <div class="modal fade" id="matchData" tabindex="-1" role="dialog" aria-labelledby="matchDataLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="matchDataLabel">匹配库</h4>
+                            </div>
+                            <div class="modal-body">
+                                <table>
+                                    <tr>
+                                        <th ng-repeat="i in commodities track by $index"><button class="btn btn-sm btn-default" ng-click="chooseData(i)">{{i.name}}</button></th>
+                                    </tr>
+                                </table>
+                                <table class="table" ng-if="dirShow">
+                                    <thead>
+                                        <tr>
+                                           <th ng-repeat="item in commodity.field track by $index">
+                                                <button class="btn btn-sm btn-default" ng-click="selectData(commodity,item)">{{item}}</button>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="item in commodity.commodities track by $index">
+                                            <td ng-repeat="each in commodity.field track by $index">{{item[each]}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" data-dismiss="modal" ng-click="addMatchedData(selectMatch)">确定</button>
+                                <button class="btn btn-default" data-dismiss="modal">关闭</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

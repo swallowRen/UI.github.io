@@ -1,0 +1,75 @@
+<div class="row" ng-controller="tableCtrl">
+    <div class="col-md-12">
+        <rd-widget>
+            <rd-widget-header icon="fa-tasks" title="List">
+                语料库
+            </rd-widget-header>
+            <rd-widget-body class="table table-responsive">
+                <div>
+                    <table class="table" st-table="data">
+                        <thead>
+                            <tr>
+                                <th>message</th>
+                                <th>type</th>
+                                <th>male_label</th>
+                                <th>female_label</th>
+                            </tr>
+                            <tr>
+                                <th class="col-md-6">
+                                    <input class="input-sm form-control" ng-model="search.message" placeholder="搜索消息" ng-change="filterByInput()">
+                                </th>
+                                <th class="col-md-2">
+                                    <input class="input-sm form-control" ng-model="search.type" placeholder="搜索类型" ng-change="filterByInput()">
+                                </th>
+                                <th>
+                                    <input class="input-sm form-control" ng-model="search.male_label" ng-change="filterByInput()">
+                                </th>
+                                <th>
+                                    <input class="input-sm form-control" ng-model="search.female_label" ng-change="filterByInput()">
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="row in data">
+                                <td>{{row.message}}</td>
+                                <!-- <td>{{row.messageId}}</td> -->
+                                <td>{{row.type}}</td>
+                                <td><a editable-text="row.male_label" ng-model="row.male_label" onaftersave="updateLabel(row)">{{row.male_label.toString()}}</a></td>
+                                <td><a editable-text="row.female_label" ng-model="row.female_label" onaftersave="updateLabel(row)">{{row.female_label.toString()}}</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal" ng-click="addLabelItem()">Add label</button>
+                </div>
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button class="close" type="button" data-dismiss="modal" aria-hidden="true">
+                                </button>
+                                <h4 class="modal-title" id="myModalLabel">添加语料</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="labelItem">信息：<input class="form-control input-sm" ng-model="insertItem.content"></div>
+                                <!-- <div class="labelItem">类型：<input class="form-control input-sm" type="text" ng-model='insertItem.type'></div> -->
+                                <div class="labelItem">类型：<select class="form-control" ng-modal="insertItem.type">
+                                    <option value="">客户的消息</option>
+                                    <option value="">客服的消息</option>
+                                    <option value="">机器人消息</option>
+                                </select></div>
+                                <div class="labelItem">male_label: <input class="form-control input-sm" type="text" ng-model="insertItem.male_label"></div>
+                                <div class="labelItem">female_label: <input class="form-control input-sm" type="text" ng-model="insertItem.female_label"></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" ng-click="saveLabelItem(insertItem)">提交</button>
+                                <button class="btn btn-default" data-dismiss="modal">关闭</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </rd-widget-body>
+        </rd-widget>
+        <tm-pagination conf="page">
+        </tm-pagination>
+    </div>
+</div>

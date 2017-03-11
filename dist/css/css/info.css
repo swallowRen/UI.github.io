@@ -1,0 +1,127 @@
+.row_info .col-md-6 .dialogue,
+.row_info .col-md-6 .dialogue .dialogue_info,
+.row_info .col-md-6 .faq,
+.row_info .col-md-6 .faq .echarts,
+.row_info .col-md-6 .help,
+.row_info .col-md-6 .help_info,
+.row_info .col-md-6 .user_info,
+.row_info .col-md-6 .help_info .help_title,
+.row_info .col-md-6 .user_info .help_title {
+  overflow: hidden;
+}
+.row_info {
+  overflow-y: scroll;
+  top: 0px;
+  bottom: 0px;
+  height: 90vh;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background: #E5E8ED;
+}
+.row_info .col-md-6 {
+  padding: 0px;
+}
+.row_info .col-md-6 .personal {
+  border-radius: 2px;
+}
+.row_info .col-md-6 .personal_head,
+.row_info .col-md-6 .dialogue_head,
+.row_info .col-md-6 .faq_head,
+.row_info .col-md-6 .user_head,
+.row_info .col-md-6 .help_head {
+  height: 48px;
+  background: #FAFBFC;
+  padding-left: 14px;
+  border-bottom: #E7E7EB 1px solid;
+  line-height: 48px;
+  size: 16px;
+  color: #666;
+}
+.row_info .col-md-6 .personal_info,
+.row_info .col-md-6 .dialogue .dialogue_info {
+  background: #fff;
+  padding-left: 14px;
+  padding-right: 20px;
+  padding-top: 20px;
+  padding-bottom: 14px;
+}
+.row_info .col-md-6 .personal_info_accounts {
+  line-height: 30px;
+  size: 14px;
+  color: #333;
+}
+.row_info .col-md-6 .dialogue {
+  margin-top: 30px;
+  border-radius: 2px;
+}
+.row_info .col-md-6 .dialogue .dialogue_info .dialogue_title {
+  margin-top: 30px;
+  line-height: 30px;
+  size: 14px;
+  color: #333;
+}
+.row_info .col-md-6 .dialogue .dialogue_info .dialogue_tol {
+  margin-top: 10px;
+  line-height: 30px;
+  size: 24px;
+  color: #333;
+}
+.row_info .col-md-6 .dialogue .dialogue_info .dialogue_line {
+  height: 1px;
+  background: #E7E7EB;
+}
+.row_info .col-md-6 .faq {
+  margin-top: 30px;
+}
+.row_info .col-md-6 .faq .echarts {
+  background: #fff;
+  padding-top: 30px;
+}
+.row_info .col-md-6 .user {
+  margin-left: 30px;
+  border-radius: 2px;
+}
+.row_info .col-md-6 .user_info {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  line-height: 24px;
+  size: 12px;
+  color: #ccc;
+}
+.row_info .col-md-6 .user_info a:hover {
+  text-decoration: none;
+}
+.row_info .col-md-6 .help {
+  margin-left: 30px;
+  margin-top: 30px;
+  border-radius: 2px;
+}
+.row_info .col-md-6 .help_info,
+.row_info .col-md-6 .user_info {
+  background: #fff;
+}
+.row_info .col-md-6 .help_info .help_title,
+.row_info .col-md-6 .user_info .help_title {
+  background: #fff;
+}
+.row_info .col-md-6 .help_info .help_title .help_que,
+.row_info .col-md-6 .user_info .help_title .help_que {
+  font-size: 12px;
+  float: left;
+}
+.row_info .col-md-6 .help_info .help_title .help_que:hover,
+.row_info .col-md-6 .user_info .help_title .help_que:hover {
+  text-decoration: none;
+}
+.row_info .col-md-6 .help_info .help_ans,
+.row_info .col-md-6 .user_info .help_ans {
+  font-size: 12px;
+}
+.row_info .col-md-6 .help_loading {
+  margin-top: 30px;
+}
+/*# sourceMappingURL=info.css.map */
